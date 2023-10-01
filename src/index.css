@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500&display=swap');
+*{
+  font-family: "DM Sans";
+}
+
+.imdb{
+  width: 35px;
+height: 17px;
+}
+
+button{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+@media screen and  (min-width:1450px) {
+  html{
+    width: auto;
+  }
+    
+
+}
+@media screen and  (max-width:1199px) {
+
+
+}
+  
+  @media screen and  (max-width:991px) {
+   
+  }
+  
+  @media screen and  (max-width:767px) {
+   
+  }
+  
+  
+  
+  
+  @media screen and (max-width:530px) {
+    
+    .nav {
+      margin: 3rem 2rem;
+    }
+   .nav_title h2{
+    display: none;
+   }
+
+   .nav_menu button{
+display: none;
+   }
+   .search input {
+      width: 314px;
+   }
+   .banner__title{
+    font-size: 38px;
+   }
+  
+   .search svg{
+    right: 2rem;
+   }
+
+    .left_side{
+      display: none;
+    }
+    .bottom_side{
+      flex-direction: column;
+    }
+    .playnow{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    }
+    .playnow img {
+      width: 720px;
+      height: 446px;
+      top: 38px;
+      left: 263px;
+      border-radius: 20px;
+  }
+.bottom_left img{
+  width: 43rem;
+}
+  .movie__details {
+    display: flex;
+    margin: 0 2rem;
+}
+.movieD-title{
+  margin-top: 2rem;
+}
+.movieD-title h3{
+
+  font-size: 34px;
+}
+
+.movieD-title-Wrapper p{
+  font-size: 38px;
+}
+}
+
+  @media (max-width:828px) and (min-width:414px) {
+
+  html{
+    width: 504px;
+    margin: 0;
+    padding: 0;
+  }
+  /* .nav {
+    margin: 3rem 1rem;
+    
+  } */
+
+  .search input {
+    width: 300px;
+    margin: 0 1rem;
+ }
+ .search svg{
+  right: 2rem;
+ }
+
+ .Featured h2 {
+  width: 100vw;
+  height: 50px;
+  font-size: 35px;
+}
+.item {
+  margin: 3rem 1rem;
+}
+.item p {
+  width: 99px;
+  color: #BE123C;
+}
+.row__poster .poster {
+  width: 363px;
+  height: 490px;
+  border-radius: 6px;
+  gap: 12px;
+}
+
+}

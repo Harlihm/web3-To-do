@@ -8,7 +8,7 @@ import TodoList from './Assets/TodoList'
 import { TaskContractAddress } from '../config';
 import TaskAbi from '../backend/build/contracts/TaskContract.json'
 import {ethers} from "ethers"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
@@ -17,6 +17,11 @@ function App() {
   const [currentAccount,setCurrentAccount]=useState('');
   const [input,setInput]=useState('');
   const [tasks , setTasks]= useState([]);
+
+  useEffect(()=>{
+    connectWallet()
+    getAllTasks()
+  },[])
 
 
    // Calls Metamask to connect wallet on clicking Connect Wallet button
@@ -56,7 +61,26 @@ function App() {
    // Just gets all the tasks from the contract
    const getAllTasks = async () => {
  
-   }
+    try{
+      const {ethereum}=window;
+      if(ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        const TaskContract= new ethers.Contract(
+          TaskContractAddress,
+          TaskAbi.abi,
+          signer  
+        )
+
+        let allTasks=await TaskContract.getMyTasks()
+        setTasks(allTasks)
+      } else {
+         console.log("object does not exist")
+      }
+    } catch(error){
+      console.log(error)
+    }
+   };
  
    // Add tasks from front-end onto the blockchain
    const addTask = async e => {
@@ -92,16 +116,38 @@ function App() {
          catch(error){
           console.log(error)
         }
+        setInput('')
    }
  
    // Remove tasks from front-end by filtering it out on our "back-end" / blockchain smart contract
    const deleteTask = key => async () => {
- 
+     try{
+      const {ethereum}=window;
+      if(ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        const TaskContract= new ethers.Contract(
+          TaskContractAddress,
+          TaskAbi.abi,
+          signer  
+        )
+       const deleteTaskTx = await TaskContract.deleteTask(key,true)
+       console.log("successfully deleted",deleteTaskTx);
+
+       let allTasks =await TaskContract.getMyTasks()
+       setTasks(allTasks);
+
+      } else{
+        console.log('etherum does not exist')
+      }
+     }catch(err){
+      console.log(err)
+     }
    }
   return (
     <div className='bg-[#97b5fe] h-screen w-screen flex justify-center py-6'>
     {!isUserLoggedin ? <ConnectWalletButton connectWallet={connectWallet} /> :
-      correctNetwork ?  <TodoList addTask={addTask} setInput={setInput} input={input}/> : <WrongNetworkMessage />}
+      correctNetwork ?  <TodoList tasks={tasks} addTask={addTask} setInput={setInput} input={input} deleteTask={deleteTask}/> : <WrongNetworkMessage />}
   </div>
   );
 }

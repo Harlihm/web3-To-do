@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Navbar from './Navbar'
 import Task from './Task'
-import { AiOutlinePlusCircle } from 'React-icons/ai';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 const TodoList = ({tasks ,addTask,setInput,input,deleteTask}) => <div className='w-[70%] bg-[#354ea3] py-4 px-9 rounded-[30px] overflow-scroll'>
   <Navbar />

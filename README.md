@@ -2,5 +2,5 @@
 
 use `npm install` to install the dependencies
 
-use `npm run dev` to run the program
+use `npm run dev`  to run the program
 
